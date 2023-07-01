@@ -70,6 +70,22 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)build\bin\$(Platform)\$(Configuration)</OutDir>
+    <IntDir>$(SolutionDir)build\obj\$(Platform)\$(Configuration)</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)build\bin\$(Platform)\$(Configuration)</OutDir>
+    <IntDir>$(SolutionDir)build\obj\$(Platform)\$(Configuration)</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)build\bin\$(Platform)\$(Configuration)</OutDir>
+    <IntDir>$(SolutionDir)build\obj\$(Platform)\$(Configuration)</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)build\bin\$(Platform)\$(Configuration)</OutDir>
+    <IntDir>$(SolutionDir)build\obj\$(Platform)\$(Configuration)</IntDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -131,6 +147,8 @@
     <ClCompile Include="source\shell\shell.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\server\protocol\datatype.h" />
+    <ClInclude Include="source\server\protocol\packet.h" />
     <ClInclude Include="source\shell\shell.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

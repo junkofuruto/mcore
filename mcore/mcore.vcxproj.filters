@@ -6,5 +6,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\shell\shell.h" />
+    <ClInclude Include="source\server\protocol\packet.h" />
+    <ClInclude Include="source\server\protocol\datatype.h" />
   </ItemGroup>
 </Project>
