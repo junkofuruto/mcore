@@ -1,5 +1,7 @@
 #pragma once
 
 namespace protocol {
-	namespace 
+	namespace packet {
+
+	}
 }

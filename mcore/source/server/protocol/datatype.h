@@ -2,16 +2,19 @@
 
 namespace protocol {
 	namespace datatype {
-		typedef struct __byte {
+		typedef struct {
+			unsigned char value;
+		} u8_t;
+		typedef struct {
+			signed char value;
+		} s8_t;
+		typedef struct {
+			unsigned char value : 4;
+			unsigned char fractional : 4;
+		} f8_t;
 
-		} byte;
+		typedef struct {
 
-		typedef struct __sbyte {
-
-		} sbyte;
-
-		typedef struct __fbyte {
-
-		} fbyte;
+		} ;
 	}
 }
