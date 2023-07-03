@@ -14,11 +14,6 @@ namespace protocol {
 		public:
 			signed char value : 3;
 			unsigned char fractional : 5;
-
-#if MC_SHELL_DEEP_DEBUG
-			~__f8_t();
-#endif
-
 			float to_float();
 			static __f8_t from_float(float value);
 		} f8_t;
@@ -32,9 +27,8 @@ namespace protocol {
 			signed short value : 11;
 			unsigned short fractional : 5;
 
-			float to_float() {
-				return static_cast<float>(this->value) + (static_cast<float>(this->fractional) / 32.0f);
-			}
+			float to_float();
+			static __f16_t from_float(float value);
 		} f16_t;
 
 		typedef class __array_t {
