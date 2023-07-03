@@ -1,7 +1,5 @@
 #pragma once
 
-#include "../../shell/shell.h"
-
 namespace protocol {
 	namespace datatype {
 		typedef class __u8_t {
