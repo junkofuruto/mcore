@@ -3,6 +3,7 @@
   <ItemGroup>
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\shell\shell.cpp" />
+    <ClCompile Include="source\server\protocol\datatype.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\shell\shell.h" />

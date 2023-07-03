@@ -8,6 +8,7 @@
 
 #define MC_SHELL_SUCCESS 0
 #define MC_SHELL_FAILURE 1
+#define MC_SHELL_DEEP_DEBUG 1
 
 namespace shell {
 	enum class post_type {
