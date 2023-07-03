@@ -3,9 +3,11 @@
 namespace protocol {
 	namespace datatype {
 		typedef class __u8_t {
+		public:
 			unsigned char value;
 		} u8_t;
 		typedef class __s8_t {
+		public:
 			signed char value;
 		} s8_t;
 		typedef class __f8_t {
@@ -19,6 +21,8 @@ namespace protocol {
 		typedef class __s16_t {
 		public:
 			signed short value;
+
+			__s16_t(signed short v) : value(v) {}
 		} s16_t;
 		typedef class __f16_t {
 		public:
