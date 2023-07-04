@@ -12,9 +12,9 @@
 
 namespace shell {
 	enum class post_type {
-		Trace		= '7',
-		Info		= '2',
-		Debug		= '4',
+		trace		= '7',
+		info		= '2',
+		debug		= '4',
 		Warning		= '3',
 		Error		= '1',
 	};
