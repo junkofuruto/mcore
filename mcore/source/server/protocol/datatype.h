@@ -1,21 +1,18 @@
 #pragma once
 
-#include <stdint.h>
-
 #include "datatype/numeric.h"
+#include "datatype/varlen.h"
 
 namespace protocol::datatype {
-	typedef __mc_prot_numeric<bool>			bool_t;
-
-	typedef __mc_prot_numeric<float>		f32_t;
-	typedef __mc_prot_numeric<double>		f64_t;
-
-	typedef __mc_prot_numeric<int8_t>		s8_t;
-	typedef __mc_prot_numeric<uint8_t>		u8_t;
-	typedef __mc_prot_numeric<int16_t>		s16_t;
-	typedef __mc_prot_numeric<uint16_t>		u16_t;
-	typedef __mc_prot_numeric<int32_t>		s32_t;
-	typedef __mc_prot_numeric<int64_t>		s64_t;
-
-
+	typedef __mc_prot_numeric<bool>					bool_t;
+	typedef __mc_prot_numeric<float>				float_t;
+	typedef __mc_prot_numeric<double>				double_t;
+	typedef __mc_prot_numeric<signed char>			byte_t;
+	typedef __mc_prot_numeric<signed short>			short_t;
+	typedef __mc_prot_numeric<signed int>			int_t;
+	typedef __mc_prot_numeric<signed long long>		long_t;
+	typedef __mc_prot_numeric<unsigned char>		ubyte_t;
+	typedef __mc_prot_numeric<unsigned short>		ushort_t;
+	typedef __mc_prot_varlen<signed int>			varint_t;
+	typedef __mc_prot_varlen<signed long long>		varlong_t;
 }

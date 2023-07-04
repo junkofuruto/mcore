@@ -7,5 +7,7 @@
   <ItemGroup>
     <ClInclude Include="source\shell\shell.h" />
     <ClInclude Include="source\server\protocol\datatype.h" />
+    <ClInclude Include="source\server\protocol\datatype\numeric.h" />
+    <ClInclude Include="source\server\protocol\datatype\varlen.h" />
   </ItemGroup>
 </Project>

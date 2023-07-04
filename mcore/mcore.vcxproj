@@ -156,6 +156,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\server\protocol\datatype.h" />
+    <ClInclude Include="source\server\protocol\datatype\numeric.h" />
+    <ClInclude Include="source\server\protocol\datatype\varlen.h" />
     <ClInclude Include="source\shell\shell.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

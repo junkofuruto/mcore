@@ -15,8 +15,8 @@ namespace shell {
 		trace		= '7',
 		info		= '2',
 		debug		= '4',
-		Warning		= '3',
-		Error		= '1',
+		warning		= '3',
+		error		= '1',
 	};
 
 	void post(const post_type& type, const std::string& message);
