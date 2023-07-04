@@ -13,7 +13,7 @@ namespace protocol::datatype {
 			return m_value;
 		}
 
-		template<typename U> __mc_prot_numeric& operator=(const U& val) {
+		template<typename U> __mc_prot_numeric& operator=(U val) {
 			m_value = val;
 			return *this;
 		}
