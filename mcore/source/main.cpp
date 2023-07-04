@@ -2,11 +2,8 @@
 #include "server/protocol/datatype.h"
 
 int main(void) {
-	shell::post(shell::post_type::info, std::to_string(sizeof(protocol::datatype::boolean)));
-	shell::post(shell::post_type::info, std::to_string(sizeof(protocol::datatype::s_byte)));
-	shell::post(shell::post_type::info, std::to_string(sizeof(protocol::datatype::s_short)));
-	shell::post(shell::post_type::info, std::to_string(sizeof(protocol::datatype::s_int)));
-	shell::post(shell::post_type::info, std::to_string(sizeof(protocol::datatype::s_long)));
+	protocol::datatype::bool_t v = true;
+	v = false;
 
 	return MC_SHELL_SUCCESS;
 }
