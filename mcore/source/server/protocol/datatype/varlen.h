@@ -4,31 +4,22 @@ namespace protocol::datatype {
     template<typename T> class __mc_prot_varlen {
     private:
         std::unique_ptr<unsigned char[]> value;
-        char length;
+        unsigned char length;
 
     public:
         __mc_prot_varlen() : value(nullptr), length(0) {}
 
         static __mc_prot_varlen encode(T value) {
-            std::vector<uint8_t> buffer;
+            std::vector<unsigned char> buffer;
 
-            bool isNegative = false;
-            if (value < 0) {
-                isNegative = true;
-                value = -value;
-            }
-
-            do {
-                uint8_t byte = value & 0x7F;
-                value >>= 7;
-                if (value != 0) {
-                    byte |= 0x80;
+            while (true) {
+                if ((value & ~((T)0x7F)) == 0) {
+                    buffer.push_back(value);
+                    break;
                 }
-                buffer.push_back(byte);
-            } while (value != 0);
 
-            if (isNegative) {
-                buffer.back() |= 0x40;
+                buffer.push_back((value & 0x7F) | 0x80);
+                value >>= 7;
             }
 
             __mc_prot_varlen result;
@@ -41,16 +32,18 @@ namespace protocol::datatype {
 
         T decode() {
             T result = 0;
-            size_t shift = 0;
-            size_t i = 0;
+            int position = 0;
+            unsigned char currentByte, i = 0;
 
-            uint8_t byte;
+            while (true) {
+                currentByte = value.get()[i++];
+                result |= static_cast<T>(currentByte & 0x7F) << position;
 
-            do {
-                byte = value[i++];
-                result |= (T)(byte & 0x7F) << shift;
-                shift += 7;
-            } while ((byte & 0x80) != 0 && i < length);
+                if ((currentByte & 0x80) == 0)
+                    break;
+
+                position += 7;
+            }
 
             return result;
         }
