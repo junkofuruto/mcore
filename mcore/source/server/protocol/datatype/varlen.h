@@ -13,48 +13,45 @@ namespace protocol::datatype {
         __mc_prot_varlen() : value(nullptr), length(0) {}
 
         static __mc_prot_varlen encode(T value) {
+            using unsigned_T = typename std::make_unsigned<T>::type;
             std::vector<unsigned char> buffer;
-
-            while (true) {
-                if ((value & ~((T)0x7F)) == 0) {
-                    buffer.push_back(value);
-                    break;
-                }
-
-                buffer.push_back((value & 0x7F) | 0x80);
-                value >>= 7;
+            unsigned_T uvalue = static_cast<unsigned_T>(value);
+            while (uvalue >= 0x80) {
+                buffer.push_back(static_cast<unsigned char>((uvalue & 0x7F) | 0x80));
+                uvalue >>= 7;
             }
-
+            buffer.push_back(static_cast<unsigned char>(uvalue));
             __mc_prot_varlen result;
             result.length = static_cast<unsigned char>(buffer.size());
             result.value = std::make_unique<unsigned char[]>(result.length);
-            memcpy(result.value.get(), buffer.data(), result.length);
-
+            std::memcpy(result.value.get(), buffer.data(), result.length);
             return result;
         }
-
-        T decode() {
+        static __mc_prot_varlen create(const std::vector<unsigned char>& array) {
+            if (array.size() > (sizeof(T) + 1 * sizeof(T) / 4)) {
+                throw std::runtime_error("INNER-DT-VARLEN-MISMATCH (varlen.h): Input array of bytes is bigger than possible result");
+            }
+            __mc_prot_varlen result;
+            result.length = static_cast<unsigned char>(array.size());
+            result.value = std::make_unique<unsigned char[]>(result.length);
+            std::memcpy(result.value.get(), array.data(), result.length);
+            return result;
+        }
+        std::vector<unsigned char> get_bytes() const {
+            std::vector<unsigned char> result(value.get(), value.get() + length);
+            return result;
+        }
+        T decode() const {
             T result = 0;
             int position = 0;
             unsigned char currentByte, i = 0;
-
             while (true) {
-                currentByte = value.get()[i++];
+                currentByte = value[i++];
                 result |= static_cast<T>(currentByte & 0x7F) << position;
-
-                if ((currentByte & 0x80) == 0)
+                if ((currentByte & 0x80) == 0) {
                     break;
-
+                }
                 position += 7;
-            }
-
-            return result;
-        }
-
-        std::vector<unsigned char> get_bytes() {
-            std::vector<unsigned char> result;
-            for (size_t i = 0; i < length; i++) {
-                result.push_back(value.get()[i]);
             }
             return result;
         }
