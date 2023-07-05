@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <memory>
+#include <stdexcept>
 
 namespace protocol::datatype {
     template<typename T> class __mc_prot_varlen {
