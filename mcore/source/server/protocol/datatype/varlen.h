@@ -4,8 +4,10 @@
 #include <memory>
 #include <stdexcept>
 
+#include "getbytes.h"
+
 namespace protocol::datatype {
-    template<typename T> class __mc_prot_varlen {
+    template<typename T> class __mc_prot_varlen : public __mc_prot_asbytes_i {
     private:
         std::unique_ptr<unsigned char[]> value;
         unsigned char length;
@@ -38,18 +40,18 @@ namespace protocol::datatype {
             std::memcpy(result.value.get(), array.data(), result.length);
             return result;
         }
-        std::vector<unsigned char> get_bytes() const {
+        std::vector<unsigned char> get_bytes() const override {
             std::vector<unsigned char> result(value.get(), value.get() + length);
             return result;
         }
         T decode() const {
             T result = 0;
             int position = 0;
-            unsigned char currentByte, i = 0;
+            unsigned char current_byte, i = 0;
             while (true) {
-                currentByte = value[i++];
-                result |= static_cast<T>(currentByte & 0x7F) << position;
-                if ((currentByte & 0x80) == 0) {
+                current_byte = value[i++];
+                result |= static_cast<T>(current_byte & 0x7F) << position;
+                if ((current_byte & 0x80) == 0) {
                     break;
                 }
                 position += 7;

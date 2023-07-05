@@ -9,5 +9,6 @@
     <ClInclude Include="source\server\protocol\datatype.h" />
     <ClInclude Include="source\server\protocol\datatype\numeric.h" />
     <ClInclude Include="source\server\protocol\datatype\varlen.h" />
+    <ClInclude Include="source\server\protocol\datatype\getbytes.h" />
   </ItemGroup>
 </Project>
