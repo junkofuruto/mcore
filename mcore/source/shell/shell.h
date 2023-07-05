@@ -14,7 +14,7 @@ namespace shell {
 	enum class post_type {
 		trace		= '7',
 		info		= '2',
-		debug		= '4',
+		debug		= '6',
 		warning		= '3',
 		error		= '1',
 	};

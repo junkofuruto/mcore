@@ -1,5 +1,8 @@
 #pragma once
 
+#include <vector>
+#include <memory>
+
 namespace protocol::datatype {
     template<typename T> class __mc_prot_varlen {
     private:
